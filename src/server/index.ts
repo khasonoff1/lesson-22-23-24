@@ -5,4 +5,8 @@ const request = axios.create({
     timeout: 10000
 })
 
+request.interceptors.response.use(res => res, (err) => {
+    return Promise.reject(err);
+})
+
 export default request;
