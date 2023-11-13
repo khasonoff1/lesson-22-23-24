@@ -3,4 +3,4 @@ interface DynamicMetaData {
     searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export default DynamicMetaData
+export default DynamicMetaData                                                                                                                                          

@@ -8,15 +8,15 @@ interface AuthState {
     setIsAuthenticated: (user: User) => void
 }
 
-const userJson = localStorage.getItem('user');
+const userJson = typeof window !== "undefined" ? window.localStorage.getItem('user') : null;
 
-console.log(userJson);
+const token = typeof window !== "undefined" ? window.localStorage.getItem('token') : false
 
 
 const user = userJson ? JSON.parse(userJson) : null
 
 const useAuth = create<AuthState>()((set, get) => ({
-    isAuthenticated: Boolean(localStorage.getItem('token')),
+    isAuthenticated: Boolean(token),
     user,
     setIsAuthenticated: (user) => {
         const { isAuthenticated } = get()

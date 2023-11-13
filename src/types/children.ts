@@ -1,1 +1,1 @@
-export default interface Children { children: React.ReactNode }
+export default interface Children { children: React.ReactNode } 
