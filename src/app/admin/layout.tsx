@@ -1,5 +1,8 @@
+'use client';
+
 import Children from "@/types/children";
 import React, { Fragment } from "react";
+import withAuth from "../hoc/with-auth";
 
 const AdminLayout = ({ children }: Children) => {
     return (
@@ -11,4 +14,4 @@ const AdminLayout = ({ children }: Children) => {
     );
 };
 
-export default AdminLayout;
+export default withAuth(AdminLayout);

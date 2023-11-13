@@ -5,7 +5,7 @@ import { create } from "zustand";
 interface AuthState {
     isAuthenticated: boolean,
     user: User | null,
-    setIsAuthenticated: (user: User) => void
+    setIsAuthenticated: (user?: User | null) => void
 }
 
 const userJson = typeof window !== "undefined" ? window.localStorage.getItem('user') : null;
@@ -18,7 +18,7 @@ const user = userJson ? JSON.parse(userJson) : null
 const useAuth = create<AuthState>()((set, get) => ({
     isAuthenticated: Boolean(token),
     user,
-    setIsAuthenticated: (user) => {
+    setIsAuthenticated: (user = null) => {
         const { isAuthenticated } = get()
         set({ isAuthenticated: !isAuthenticated, user })
     }

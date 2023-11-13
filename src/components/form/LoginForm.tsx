@@ -2,6 +2,7 @@
 
 import request from "@/server";
 import useAuth from "@/store/auth";
+import ROLES from "@/types/roles";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -21,7 +22,11 @@ const LoginForm = () => {
             setIsAuthenticated(user);
             localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token", accesstoken);
-            router.push("/");
+            if (user.role === ROLES.ADMIN) {
+                router.push('/admin')
+            } else {
+                router.push('/')
+            }
         } finally {
             setLoading(false);
         }
@@ -31,7 +36,7 @@ const LoginForm = () => {
         <form onSubmit={login}>
             <input type="text" name="username" placeholder="username" />
             <input type="text" name="password" placeholder="password" />
-            <button type="submit">Login</button>
+            <button type="submit" disabled={loading}>Login</button>
         </form>
     );
 };
